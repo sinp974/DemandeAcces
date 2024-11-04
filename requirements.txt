@@ -1,0 +1,5 @@
+gql
+requests-toolbelt
+psycopg2
+pandas
+geopandas

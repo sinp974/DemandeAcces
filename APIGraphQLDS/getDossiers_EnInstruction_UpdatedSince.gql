@@ -1,0 +1,87 @@
+query getDemarche($demarcheNumber: Int!, $updatedSince: ISO8601DateTime) {
+  demarche(number: $demarcheNumber) {
+    dossiers(updatedSince: $updatedSince, state: en_instruction) {
+      nodes {
+        ...DossierFragment
+      }
+    }
+  }
+}
+
+fragment DossierFragment on Dossier {
+  number
+  state
+  dateDerniereCorrectionEnAttente
+  dateDepot
+  dateDerniereModification
+  usager {
+    email
+  }
+  demandeur {
+    __typename
+    ...PersonnePhysiqueFragment
+  }
+  champs {
+    ...ChampFragment
+    ...RootChampFragment
+  }
+}
+
+fragment RootChampFragment on Champ {
+  ... on RepetitionChamp {
+    rows {
+      champs {
+        ...ChampFragment
+      }
+    }
+  }
+}
+
+fragment ChampFragment on Champ {
+  champDescriptorId
+  __typename
+  label
+  stringValue
+  ... on DateChamp {
+    date
+  }
+  ... on DatetimeChamp {
+    datetime
+  }
+  ... on CheckboxChamp {
+    checked: value
+  }
+  ... on DecimalNumberChamp {
+    decimalNumber: value
+  }
+  ... on IntegerNumberChamp {
+    integerNumber: value
+  }
+  ... on CiviliteChamp {
+    civilite: value
+  }
+  ... on LinkedDropDownListChamp {
+    primaryValue
+    secondaryValue
+  }
+  ... on MultipleDropDownListChamp {
+    values
+  }
+  ... on PieceJustificativeChamp {
+    files {
+      ...FileFragment
+    }
+  }
+}
+
+fragment PersonnePhysiqueFragment on PersonnePhysique {
+  civilite
+  nom
+  prenom
+  email
+}
+
+fragment FileFragment on File {
+  filename
+  url
+}

@@ -1,0 +1,44 @@
+# Ignorer les dossiers __pycache__
+__pycache__/
+*.py[cod]
+
+# Ignorer les fichiers de configuration sensibles
+configAPI.json
+configBDD.json
+config.json
+
+# Ignorer les dossiers contenant les exemples de scripts SQL de traitement manuel des données et les exemples de retour de l'API
+exemplesSQL/
+results/
+fdw_geom_demande/
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers temporaires
+*.tmp
+*.swp
+*.swo
+
+# Ignorer les environnements virtuels
+venv/
+env/
+.venv/
+.env/
+
+# Ignorer les fichiers de configuration IDE
+.vscode/
+.idea/
+
+# Ignorer les fichiers de configuration de système
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers de test coverage
+coverage/
+*.cover
+*.coverage
+
+# Ignorer les fichiers de packages installés
+*.egg-info/
+.eggs/
